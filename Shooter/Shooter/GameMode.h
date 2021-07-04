@@ -8,6 +8,7 @@ class GameMode
 
 public:
 	virtual void HandleInputs(const Uint8* keystates) {};
+	virtual void Update() {};
 	virtual std::vector<GameText> GetTexts() {
 		std::vector<GameText> texts;
 		return texts;

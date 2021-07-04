@@ -9,6 +9,7 @@ void Game::UpdateScreen()
 void Game::RenderText()
 {
 	std::vector<GameText> texts = currentMode->GetTexts();
+	SDL_RenderClear(renderer);
 	for (int i = 0; i < texts.size(); ++i)
 	{
 		texture = SDL_CreateTextureFromSurface(renderer, texts.at(i).Surface());
@@ -24,6 +25,7 @@ void Game::Cycle()
 	}
 
 	currentMode->HandleInputs(SDL_GetKeyboardState(NULL));
+	currentMode->Update();
 
 	SDL_Delay(16);
 	UpdateScreen();

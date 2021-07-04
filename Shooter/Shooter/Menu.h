@@ -7,13 +7,16 @@
 
 class Menu : public GameMode
 {
-	GameText* title, *prompts;
 	std::vector<GameText> texts;
+	bool isIntro;
+	const int TITLE = 0, START = 1, QUIT = 2;
 
 public:
 	Menu();
 	~Menu();
 	void HandleInputs(const Uint8* keystates);
+	void Update();
+	void IntroSequence();
 	std::vector<GameText> GetTexts();
 };
 
