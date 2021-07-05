@@ -1,22 +1,26 @@
 #pragma once
-#include <SDL.h>
 #include <SDL_ttf.h>
 #include "GameMode.h"
-#include <iostream>
 #include "GameText.h"
+#include "Graphic.h"
 
 class Menu : public GameMode
 {
 	std::vector<GameText> texts;
-	bool isIntro;
+	std::vector<Graphic> images;
+	bool isIntro, isQuitSelected;
 	const int TITLE = 0, START = 1, QUIT = 2;
+	Graphic* cursor;
 
 public:
 	Menu();
 	~Menu();
-	void HandleInputs(const Uint8* keystates);
+	void HandleInputs(const Uint8* keystates, bool isRepeat);
+	void HandleEvents(SDL_Event e);
 	void Update();
 	void IntroSequence();
+	void SkipIntro();
 	std::vector<GameText> GetTexts();
+	std::vector<Graphic> GetImages();
 };
 

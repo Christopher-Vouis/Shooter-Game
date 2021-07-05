@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "GameText.h"
+#include "Graphic.h"
 #include "Menu.h"
 #include <iostream>
 
@@ -19,6 +20,7 @@ class Game
 public:
 	void UpdateScreen();
 	void RenderText();
+	void RenderGraphics();
 	void Cycle();
 	bool IsRunning() { return isRunning; }
 	Game();

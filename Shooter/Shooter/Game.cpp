@@ -2,18 +2,33 @@
 
 void Game::UpdateScreen()
 {
+	SDL_FreeSurface(surface);
+	SDL_RenderClear(renderer);
+	SDL_DestroyTexture(texture);
 	RenderText();
+	RenderGraphics();
 	SDL_RenderPresent(renderer);
 };
 
 void Game::RenderText()
 {
 	std::vector<GameText> texts = currentMode->GetTexts();
-	SDL_RenderClear(renderer);
 	for (int i = 0; i < texts.size(); ++i)
 	{
-		texture = SDL_CreateTextureFromSurface(renderer, texts.at(i).Surface());
-		SDL_RenderCopy(renderer, texture, NULL, texts.at(i).Rect());
+		texture = SDL_CreateTextureFromSurface(renderer, &texts.at(i).Surface());
+		SDL_RenderCopy(renderer, texture, NULL, &texts.at(i).Rect());
+		SDL_DestroyTexture(texture);
+	}
+}
+
+void Game::RenderGraphics()
+{
+	std::vector<Graphic> images = currentMode->GetImages();
+	for (int i = 0; i < images.size(); ++i)
+	{
+		texture = SDL_CreateTextureFromSurface(renderer, &images.at(i).Surface());
+		SDL_RenderCopy(renderer, texture, NULL, &images.at(i).Rect());
+		SDL_DestroyTexture(texture);
 	}
 }
 
@@ -21,10 +36,13 @@ void Game::Cycle()
 {
 	if (SDL_PollEvent(&event))
 	{
-
+		if (event.type == SDL_QUIT)
+		{
+			isRunning = false;
+		}
+		currentMode->HandleEvents(event);
 	}
 
-	currentMode->HandleInputs(SDL_GetKeyboardState(NULL));
 	currentMode->Update();
 
 	SDL_Delay(16);
