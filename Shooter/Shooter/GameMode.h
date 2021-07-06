@@ -5,12 +5,14 @@
 #include "Graphic.h"
 #include <vector>
 
+#ifndef GAMEMODE_H
+	enum gameEvents { START, PAUSE, MENU, QUIT };
+#endif
+
 class GameMode
 {
 
 public:
-	std::vector<Graphic>::iterator targetGraphic;
-
 	virtual void HandleInputs(const Uint8* keystates, bool isRepeat) {};
 	virtual void HandleEvents(SDL_Event e) {};
 	virtual void Update() {};
@@ -19,8 +21,8 @@ public:
 		return texts;
 	};
 	virtual  std::vector<Graphic> GetImages() {
-		std::vector<Graphic> surfs;
-		return surfs;
+		std::vector<Graphic> imgs;
+		return imgs;
 	};
 };
 

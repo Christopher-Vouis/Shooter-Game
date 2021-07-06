@@ -57,7 +57,10 @@ void Menu::HandleInputs(const Uint8* keystates, bool isRepeat)
 			}
 			else
 			{
-				//Start Game
+				SDL_Event start;
+				start.type = SDL_USEREVENT;
+				start.user.code = gameEvents::START;
+				SDL_PushEvent(&start);
 			}
 		}
 		else if ((keystates[SDL_SCANCODE_W] || keystates[SDL_SCANCODE_S]
@@ -95,14 +98,4 @@ void Menu::SkipIntro()
 	texts.at(QUIT).SetPosition(400, 700);
 	isIntro = false;
 	cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos()[1] : texts.at(START).Pos()[1]));
-}
-
-std::vector<GameText> Menu::GetTexts()
-{
-	return texts;
-}
-
-std::vector<Graphic> Menu::GetImages()
-{
-	return images;
 }

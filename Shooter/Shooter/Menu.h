@@ -20,7 +20,7 @@ public:
 	void Update();
 	void IntroSequence();
 	void SkipIntro();
-	std::vector<GameText> GetTexts();
-	std::vector<Graphic> GetImages();
+	std::vector<GameText> GetTexts() {return texts;};
+	std::vector<Graphic> GetImages() { return images;};
 };
 

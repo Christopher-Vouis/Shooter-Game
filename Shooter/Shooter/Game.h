@@ -4,6 +4,7 @@
 #include "GameText.h"
 #include "Graphic.h"
 #include "Menu.h"
+#include "MainGame.h"
 #include <iostream>
 
 class Game

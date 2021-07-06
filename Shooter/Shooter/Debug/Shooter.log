@@ -1,4 +1,10 @@
 ﻿  Game.cpp
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
+  MainGame.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(29,2): warning C4060: switch statement contains no 'case' or 'default' labels
+  Player.cpp
+  Source.cpp
+  Generating Code...
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Graphic.h(17): warning C4172: returning address of local variable or temporary: pos
   Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

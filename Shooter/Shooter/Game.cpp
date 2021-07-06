@@ -40,7 +40,23 @@ void Game::Cycle()
 		{
 			isRunning = false;
 		}
-		currentMode->HandleEvents(event);
+		else if (event.type == SDL_USEREVENT)
+		{
+			switch (event.user.code)
+			{
+			case gameEvents::START:
+				delete currentMode;
+				currentMode = new MainGame();
+				break;
+
+			default:
+				break;
+			}
+		}
+		else
+		{
+			currentMode->HandleEvents(event);
+		}
 	}
 
 	currentMode->Update();
