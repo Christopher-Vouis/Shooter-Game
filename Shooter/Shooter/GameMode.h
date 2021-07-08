@@ -13,7 +13,7 @@ class GameMode
 {
 
 public:
-	virtual void HandleInputs(const Uint8* keystates, bool isRepeat) {};
+	virtual void HandleInputs(SDL_Event e) {};
 	virtual void HandleEvents(SDL_Event e) {};
 	virtual void Update() {};
 	virtual std::vector<GameText> GetTexts() {

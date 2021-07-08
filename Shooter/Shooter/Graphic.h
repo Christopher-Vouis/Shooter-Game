@@ -29,6 +29,11 @@ public:
 		_rect.y = y;
 	}
 
+	virtual void SetSurface(SDL_Surface surf)
+	{
+		_surface = surf;
+	}
+
 	Graphic()
 	{
 

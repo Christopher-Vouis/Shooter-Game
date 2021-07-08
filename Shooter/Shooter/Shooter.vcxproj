@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="GameText.cpp" />
@@ -152,6 +154,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Frame.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMode.h" />
     <ClInclude Include="GameText.h" />

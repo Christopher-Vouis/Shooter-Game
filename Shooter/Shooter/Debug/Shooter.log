@@ -1,10 +1,25 @@
 ﻿  Game.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(190,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(194,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(203,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(207,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
   MainGame.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(29,2): warning C4060: switch statement contains no 'case' or 'default' labels
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(190,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(194,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(203,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(207,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Player.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(190,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(194,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(203,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(207,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Source.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(190,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(194,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(203,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(207,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Generating Code...
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Graphic.h(17): warning C4172: returning address of local variable or temporary: pos
   Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include <iostream>
 
 Menu::Menu()
 {
@@ -43,11 +42,9 @@ void Menu::IntroSequence()
 	}
 }
 
-void Menu::HandleInputs(const Uint8* keystates, bool isRepeat) 
+void Menu::HandleInputs(SDL_Event e) 
 {
-	if (!isIntro && !isRepeat)
-	{
-		if (keystates[SDL_SCANCODE_RETURN])
+		if (e.key.keysym.scancode == SDL_SCANCODE_RETURN)
 		{
 			if (isQuitSelected)
 			{
@@ -63,13 +60,12 @@ void Menu::HandleInputs(const Uint8* keystates, bool isRepeat)
 				SDL_PushEvent(&start);
 			}
 		}
-		else if ((keystates[SDL_SCANCODE_W] || keystates[SDL_SCANCODE_S]
-			|| keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_DOWN]))
+		else if (!e.key.repeat && (e.key.keysym.scancode == SDL_SCANCODE_W || e.key.keysym.scancode == SDL_SCANCODE_UP
+			|| e.key.keysym.scancode == SDL_SCANCODE_S || e.key.keysym.scancode == SDL_SCANCODE_DOWN))
 		{
 			isQuitSelected = !isQuitSelected;
 			cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos()[1] : texts.at(START).Pos()[1]));
 		}
-	}
 }
 
 void Menu::HandleEvents(SDL_Event e)
@@ -83,7 +79,7 @@ void Menu::HandleEvents(SDL_Event e)
 		}
 		else
 		{
-			HandleInputs(SDL_GetKeyboardState(NULL), e.key.repeat);
+			HandleInputs(e);
 		}
 		break;
 	default:

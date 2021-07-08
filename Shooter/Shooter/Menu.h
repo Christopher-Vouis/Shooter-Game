@@ -15,7 +15,7 @@ class Menu : public GameMode
 public:
 	Menu();
 	~Menu();
-	void HandleInputs(const Uint8* keystates, bool isRepeat);
+	void HandleInputs(SDL_Event e);
 	void HandleEvents(SDL_Event e);
 	void Update();
 	void IntroSequence();
