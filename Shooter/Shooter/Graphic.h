@@ -1,26 +1,30 @@
 #pragma once
 #include<SDL.h>
+#include <iostream>
 class Graphic
 {
 protected:
 	SDL_Rect _rect;
 	SDL_Surface _surface;
+	SDL_Point _origin;
+	int _rotation;
 
 public:
 	virtual SDL_Surface Surface() { return _surface; }
 	virtual SDL_Rect Rect() { return _rect; }
-
-
-	virtual int* Pos() 
-	{
-		int pos[]{ _rect.x, _rect.y };
-		return pos;
-	}
+	virtual SDL_Point Origin() { return _origin; }
+	virtual int Rotation() { return _rotation; }
+	virtual SDL_Point Pos() {return { _rect.x, _rect.y }; }
 
 	virtual void Move(int xDist, int yDist)
 	{
 		_rect.x += xDist;
 		_rect.y += yDist;
+	}
+
+	virtual void Rotate(int degrees)
+	{
+		_rotation = degrees;
 	}
 
 	virtual void SetPosition(int x, int y)
@@ -39,10 +43,17 @@ public:
 
 	}
 
-	Graphic(SDL_Surface surf, int xPos, int yPos, int width, int height)
+	Graphic(SDL_Surface surf, int xCoord, int yCoord, int width, int height, int degrees = 0, SDL_Point origin = { 0, 0 })
 	{
-		_rect = SDL_Rect{xPos, yPos, width, height};
+		_rect = SDL_Rect{xCoord, yCoord, width, height};
 		_surface = surf;
+		_rotation = degrees;
+		_origin = origin;
+	}
+
+	~Graphic()
+	{
+
 	}
 };
 

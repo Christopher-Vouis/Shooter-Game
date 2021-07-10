@@ -3,19 +3,22 @@
 #include <vector>
 #include <SDL_image.h>
 #include "Animation.h"
+#include <math.h>
+#include <iostream>
 
 class Player
 {
 	Graphic* currentSprite;
-	SDL_Surface idleSurface;
+	SDL_Surface idleSurface, armSurface;
 	Animation* walkAnim;
+	Graphic* arm;
 
-	int hitpoints = 3, xMove, yMove;;
+	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY;
 	bool invincible = false;
 	double moveSpeed = 0.75;
 	double moveProgress = 0.0;
-
 	const Uint8* keyboardState;
+	SDL_Point armOrigin;
 
 	enum directions
 	{
@@ -37,13 +40,26 @@ class Player
 	uint8_t movementDir;
 
 public:
-	Player(Graphic* graphic)
+	Player(Graphic* graphic, Graphic* armGraphic)
 	{
 		idleSurface = *IMG_Load("img\\cowboy\\cowboy.png");
+		armSurface = *IMG_Load("img\\cowboy\\arm.png");
 		std::string walkFrames[2]{ "img\\cowboy\\cowboy_walk1.png","img\\cowboy\\cowboy_walk2.png" };
 		walkAnim = new Animation(walkFrames, 2, 40);
 		currentSprite = graphic;
+		arm = armGraphic;
 		*currentSprite = Graphic(idleSurface, 500, 500, 96, 96);
+
+		*arm = Graphic(armSurface,
+			currentSprite->Pos().x + currentSprite->Rect().w / 3,
+			currentSprite->Pos().y - 4,
+			96, 
+			96, 
+			0,
+			{34, 48}
+		);
+
+		armOrigin = { currentSprite->Pos().x + arm->Origin().x, currentSprite->Pos().y + arm->Origin().y };
 		state = playerState::IDLE;
 		keyboardState = SDL_GetKeyboardState(NULL);
 	}
@@ -54,7 +70,7 @@ public:
 		delete currentSprite;
 	}
 
-	Graphic GetSprite()
+	Graphic GetSprites()
 	{
 		return *currentSprite;
 	}
@@ -169,6 +185,10 @@ public:
 	{
 		switch (e.type)
 		{
+
+		case SDL_MOUSEMOTION:
+			Aim();
+			break;
 		case SDL_KEYDOWN:
 		case SDL_KEYUP:
 			HandleInputs(e);
@@ -213,11 +233,31 @@ private:
 
 			moveProgress -= (int)moveProgress;
 			currentSprite->Move(xMove, yMove);
+			arm->Move(xMove, yMove);
+			armOrigin = { armOrigin.x + xMove, armOrigin.y + yMove };
 		}
-
-
-
-
 	}
+
+	void Aim()
+	{
+		int angle = GetCursorAngle();
+		std::cout << angle << std::endl;
+		arm->Rotate(-angle - 90);
+	}
+
+	float GetCursorAngle()
+	{
+		SDL_GetMouseState(&crosshairX, &crosshairY);
+		if ((crosshairX - armOrigin.x) != 0)
+		{
+			float angle = atan2(armOrigin.x - crosshairX, armOrigin.y - crosshairY) * (180 / M_PI);
+			return angle;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 };
 

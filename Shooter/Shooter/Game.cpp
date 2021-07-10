@@ -27,14 +27,22 @@ void Game::RenderGraphics()
 	for (int i = 0; i < images.size(); ++i)
 	{
 		texture = SDL_CreateTextureFromSurface(renderer, &images.at(i).Surface());
-		SDL_RenderCopy(renderer, texture, NULL, &images.at(i).Rect());
+		if (images.at(i).Rotation() == 0)
+		{
+			SDL_RenderCopy(renderer, texture, NULL, &images.at(i).Rect());
+		}
+		else
+		{
+			SDL_RenderCopyEx(renderer, texture, NULL, &images.at(i).Rect(), images.at(i).Rotation(), &images.at(i).Origin(), SDL_FLIP_NONE);
+		}
+
 		SDL_DestroyTexture(texture);
 	}
 }
 
 void Game::Cycle()
 {
-	if (SDL_PollEvent(&event))
+	while (SDL_PollEvent(&event) != 0)
 	{
 		if (event.type == SDL_QUIT)
 		{

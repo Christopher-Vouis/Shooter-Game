@@ -25,8 +25,7 @@ void Menu::Update()
 
 void Menu::IntroSequence()
 {
-	texts.at(0).Pos();
-	if (texts.at(TITLE).Pos()[1] < 300)
+	if (texts.at(TITLE).Pos().y < 300)
 	{
 		texts.at(TITLE).Move(0,5);
 	}
@@ -37,7 +36,7 @@ void Menu::IntroSequence()
 	}
 	else
 	{
-		cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos()[1] : texts.at(START).Pos()[1]));
+		cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos().y : texts.at(START).Pos().y));
 		isIntro = false;
 	}
 }
@@ -64,7 +63,7 @@ void Menu::HandleInputs(SDL_Event e)
 			|| e.key.keysym.scancode == SDL_SCANCODE_S || e.key.keysym.scancode == SDL_SCANCODE_DOWN))
 		{
 			isQuitSelected = !isQuitSelected;
-			cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos()[1] : texts.at(START).Pos()[1]));
+			cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos().y : texts.at(START).Pos().y));
 		}
 }
 
@@ -93,5 +92,5 @@ void Menu::SkipIntro()
 	texts.at(START).SetPosition(400, 600);
 	texts.at(QUIT).SetPosition(400, 700);
 	isIntro = false;
-	cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos()[1] : texts.at(START).Pos()[1]));
+	cursor->SetPosition(310, (isQuitSelected ? texts.at(QUIT).Pos().y : texts.at(START).Pos().y));
 }

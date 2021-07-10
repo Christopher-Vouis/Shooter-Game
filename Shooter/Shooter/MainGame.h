@@ -8,6 +8,9 @@ class MainGame : public GameMode
 	std::vector<Graphic> images;
 	Player* player;
 	bool isPaused;
+	SDL_Surface crosshairSurface;
+	SDL_Cursor* crosshair;
+	int* crosshairX, *crosshairY;
 
 public:
 	MainGame();
