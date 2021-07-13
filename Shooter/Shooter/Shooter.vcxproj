@@ -140,11 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CollisionDetector.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMode.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameText.cpp" />
     <ClCompile Include="Graphic.cpp" />
+    <ClCompile Include="HitBox.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -155,11 +160,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="CollisionDetector.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameEvents.h" />
     <ClInclude Include="GameMode.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameText.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="HitBox.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />

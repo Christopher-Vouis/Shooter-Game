@@ -4,10 +4,7 @@
 #include "GameText.h"
 #include "Graphic.h"
 #include <vector>
-
-#ifndef GAMEMODE_H
-	enum gameEvents { START, PAUSE, MENU, QUIT };
-#endif
+#include "GameEvents.h"
 
 class GameMode
 {

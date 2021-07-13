@@ -5,13 +5,15 @@
 #include "Animation.h"
 #include <math.h>
 #include <iostream>
+#include "GameObject.h"
+#include "Enemy.h"
 
-class Player
+class Player : public GameObject
 {
-	Graphic* currentSprite;
 	SDL_Surface idleSurface, armSurface;
 	Animation* walkAnim;
 	Graphic* arm;
+	HitBox* hitBox;
 
 	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY;
 	bool invincible = false;
@@ -62,6 +64,8 @@ public:
 		armOrigin = { currentSprite->Pos().x + arm->Origin().x, currentSprite->Pos().y + arm->Origin().y };
 		state = playerState::IDLE;
 		keyboardState = SDL_GetKeyboardState(NULL);
+
+		hitBox = new HitBox(static_cast<GameObject*>(this), currentSprite->Rect());
 	}
 
 	~Player()
@@ -73,6 +77,11 @@ public:
 	Graphic GetSprites()
 	{
 		return *currentSprite;
+	}
+
+	HitBox* GetHitBox()
+	{
+		return hitBox;
 	}
 
 	void Cycle()
@@ -106,78 +115,88 @@ public:
 
 	void HandleInputs(SDL_Event e)
 	{
-		switch (e.key.keysym.scancode)
+		if (e.type == SDL_MOUSEBUTTONDOWN)
 		{
-		case SDL_SCANCODE_W:
-			if (e.type == SDL_KEYDOWN)
+			if (e.button.button == SDL_BUTTON_LEFT)
 			{
-				if (!keyboardState[SDL_SCANCODE_S])
-				{
-					movementDir |= directions::UP;
-				}
+				std::cout << "Bang!" << std::endl;
 			}
-			else if (e.type == SDL_KEYUP)
+		}
+		else
+		{
+			switch (e.key.keysym.scancode)
 			{
-				movementDir &= ~directions::UP;
-				if (keyboardState[SDL_SCANCODE_S])
+			case SDL_SCANCODE_W:
+				if (e.type == SDL_KEYDOWN)
 				{
-					movementDir |= directions::DOWN;
+					if (!keyboardState[SDL_SCANCODE_S])
+					{
+						movementDir |= directions::UP;
+					}
 				}
-			}
-			break;
-		case SDL_SCANCODE_S:
-			if (e.type == SDL_KEYDOWN)
-			{
-				if (!keyboardState[SDL_SCANCODE_W])
+				else if (e.type == SDL_KEYUP)
 				{
-					movementDir |= directions::DOWN;
+					movementDir &= ~directions::UP;
+					if (keyboardState[SDL_SCANCODE_S])
+					{
+						movementDir |= directions::DOWN;
+					}
 				}
-			}
-			else if (e.type == SDL_KEYUP)
-			{
-				movementDir &= ~directions::DOWN;
-				if (keyboardState[SDL_SCANCODE_W])
+				break;
+			case SDL_SCANCODE_S:
+				if (e.type == SDL_KEYDOWN)
 				{
-					movementDir |= directions::UP;
+					if (!keyboardState[SDL_SCANCODE_W])
+					{
+						movementDir |= directions::DOWN;
+					}
 				}
-			}
-			break;
-		case SDL_SCANCODE_A:
-			if (e.type == SDL_KEYDOWN)
-			{
-				if (!keyboardState[SDL_SCANCODE_D])
+				else if (e.type == SDL_KEYUP)
 				{
-					movementDir |= directions::LEFT;
+					movementDir &= ~directions::DOWN;
+					if (keyboardState[SDL_SCANCODE_W])
+					{
+						movementDir |= directions::UP;
+					}
 				}
-			}
-			else if (e.type == SDL_KEYUP)
-			{
-				movementDir &= ~directions::LEFT;
-				if (keyboardState[SDL_SCANCODE_D])
+				break;
+			case SDL_SCANCODE_A:
+				if (e.type == SDL_KEYDOWN)
 				{
-					movementDir |= directions::RIGHT;
+					if (!keyboardState[SDL_SCANCODE_D])
+					{
+						movementDir |= directions::LEFT;
+					}
 				}
-			}
-			break;
-		case SDL_SCANCODE_D:
-			if (e.type == SDL_KEYDOWN)
-			{
-				if (!keyboardState[SDL_SCANCODE_A])
+				else if (e.type == SDL_KEYUP)
 				{
-					movementDir |= directions::RIGHT;
+					movementDir &= ~directions::LEFT;
+					if (keyboardState[SDL_SCANCODE_D])
+					{
+						movementDir |= directions::RIGHT;
+					}
 				}
-			}
-			else if (e.type == SDL_KEYUP)
-			{
-				movementDir &= ~directions::RIGHT;
-				if (keyboardState[SDL_SCANCODE_A])
+				break;
+			case SDL_SCANCODE_D:
+				if (e.type == SDL_KEYDOWN)
 				{
-					movementDir |= directions::LEFT;
+					if (!keyboardState[SDL_SCANCODE_A])
+					{
+						movementDir |= directions::RIGHT;
+					}
 				}
+				else if (e.type == SDL_KEYUP)
+				{
+					movementDir &= ~directions::RIGHT;
+					if (keyboardState[SDL_SCANCODE_A])
+					{
+						movementDir |= directions::LEFT;
+					}
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		default:
-			break;
 		}
 	}
 
@@ -191,10 +210,19 @@ public:
 			break;
 		case SDL_KEYDOWN:
 		case SDL_KEYUP:
+		case SDL_MOUSEBUTTONDOWN:
 			HandleInputs(e);
 			break;
 		default:
 			break;
+		}
+	}
+
+	void HandleCollision(GameObject* collision)
+	{
+		if (static_cast<Enemy*>(collision))
+		{
+			TakeDamage(1);
 		}
 	}
 
@@ -233,6 +261,7 @@ private:
 
 			moveProgress -= (int)moveProgress;
 			currentSprite->Move(xMove, yMove);
+			hitBox->Move(xMove, yMove);
 			arm->Move(xMove, yMove);
 			armOrigin = { armOrigin.x + xMove, armOrigin.y + yMove };
 		}
@@ -241,7 +270,6 @@ private:
 	void Aim()
 	{
 		int angle = GetCursorAngle();
-		std::cout << angle << std::endl;
 		arm->Rotate(-angle - 90);
 	}
 
@@ -259,5 +287,10 @@ private:
 		}
 	}
 
+	void TakeDamage(int damage)
+	{
+		std::cout << "Ouch!" << std::endl;
+		hitpoints -= damage;
+	}
 };
 

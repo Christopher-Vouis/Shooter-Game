@@ -56,7 +56,9 @@ void Game::Cycle()
 				delete currentMode;
 				currentMode = new MainGame();
 				break;
-
+			case gameEvents::COLLISION:
+				currentMode->HandleEvents(event);
+				break;
 			default:
 				break;
 			}
