@@ -10,7 +10,7 @@ class Menu : public GameMode
 	std::vector<Graphic> images;
 	bool isIntro, isQuitSelected;
 	const int TITLE = 0, START = 1, QUIT = 2;
-	Graphic* cursor;
+	GameObject* cursor;
 
 public:
 	Menu();

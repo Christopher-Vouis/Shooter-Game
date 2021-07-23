@@ -6,7 +6,15 @@ void Game::UpdateScreen()
 	SDL_RenderClear(renderer);
 	SDL_DestroyTexture(texture);
 	RenderText();
-	RenderGraphics();
+	
+	for (GameObject* obj : currentMode->GetObjects())
+	{
+		for (Graphic graphic : obj->GetGraphics())
+		{
+			RenderGraphic(graphic);
+		}
+	}
+
 	SDL_RenderPresent(renderer);
 };
 
@@ -21,23 +29,11 @@ void Game::RenderText()
 	}
 }
 
-void Game::RenderGraphics()
+void Game::RenderGraphic(Graphic graphic)
 {
-	std::vector<Graphic> images = currentMode->GetImages();
-	for (int i = 0; i < images.size(); ++i)
-	{
-		texture = SDL_CreateTextureFromSurface(renderer, &images.at(i).Surface());
-		if (images.at(i).Rotation() == 0)
-		{
-			SDL_RenderCopy(renderer, texture, NULL, &images.at(i).Rect());
-		}
-		else
-		{
-			SDL_RenderCopyEx(renderer, texture, NULL, &images.at(i).Rect(), images.at(i).Rotation(), &images.at(i).Origin(), SDL_FLIP_NONE);
-		}
-
+		texture = SDL_CreateTextureFromSurface(renderer, &graphic.Surface());
+		SDL_RenderCopyEx(renderer, texture, NULL, &graphic.Rect(),graphic.Rotation(), &graphic.Origin(), graphic.FlipMode());
 		SDL_DestroyTexture(texture);
-	}
 }
 
 void Game::Cycle()
@@ -57,6 +53,8 @@ void Game::Cycle()
 				currentMode = new MainGame();
 				break;
 			case gameEvents::COLLISION:
+			case gameEvents::SPAWN:
+			case gameEvents::DESPAWN:
 				currentMode->HandleEvents(event);
 				break;
 			default:
@@ -81,6 +79,7 @@ Game::Game()
 	TTF_Init();
 	isRunning = true;
 	window = SDL_CreateWindow("Shooter", 750, 250, 1000, 1000, 0);
+	windowSurf = SDL_GetWindowSurface(window);
 	surface = SDL_GetWindowSurface(window);
 	renderer = SDL_CreateRenderer(window, -1, 0);
 	currentMode = new Menu();

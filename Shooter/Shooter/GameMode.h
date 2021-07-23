@@ -5,21 +5,30 @@
 #include "Graphic.h"
 #include <vector>
 #include "GameEvents.h"
+#include "GameObject.h"
 
 class GameMode
 {
 
+protected:
+	std::vector<GameObject*> objects;
+	std::vector<GameText> texts;
+	std::vector<Graphic> images;
 public:
 	virtual void HandleInputs(SDL_Event e) {};
 	virtual void HandleEvents(SDL_Event e) {};
 	virtual void Update() {};
+	virtual std::vector<GameObject*> GetObjects() {
+
+		return objects;
+	};
 	virtual std::vector<GameText> GetTexts() {
-		std::vector<GameText> texts;
+
 		return texts;
 	};
 	virtual  std::vector<Graphic> GetImages() {
-		std::vector<Graphic> imgs;
-		return imgs;
+
+		return images;
 	};
 };
 

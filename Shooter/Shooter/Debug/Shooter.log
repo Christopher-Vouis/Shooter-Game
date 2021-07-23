@@ -1,42 +1,94 @@
-﻿  Game.cpp
+﻿  Bullet.cpp
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(35,21): warning C4018: '<': signed/unsigned mismatch
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(49,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(238,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(242,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(251,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(255,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(272,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(281,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(240,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(244,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(253,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(257,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(276,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(277,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(283,3): error C2065: 'Bullet': undeclared identifier
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(283,11): error C2065: 'bullet': undeclared identifier
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(283,1): error C2061: syntax error: identifier 'Bullet'
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(287,23): error C2065: 'bullet': undeclared identifier
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(293,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(309,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(50,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(51,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(56,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(57,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Game.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(35,21): warning C4018: '<': signed/unsigned mismatch
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(49,21): warning C4018: '<': signed/unsigned mismatch
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(18,1): error C2653: 'Game': is not a class or namespace name
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(50,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(51,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(56,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(57,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(240,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(244,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(253,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(257,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(276,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(277,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(293,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(309,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(24,20): warning C4018: '<': signed/unsigned mismatch
   MainGame.cpp
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(35,21): warning C4018: '<': signed/unsigned mismatch
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(49,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(238,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(242,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(251,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(255,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(272,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(281,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(20,18): warning C4150: deletion of pointer to incomplete type 'SDL_Cursor'; no destructor called
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(50,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(51,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(56,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(57,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(240,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(244,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(253,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(257,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(276,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(277,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(293,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(309,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(19,18): warning C4150: deletion of pointer to incomplete type 'SDL_Cursor'; no destructor called
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\packages\sdl2.nuget.2.0.14\build\native\include\SDL_mouse.h(41): message : see declaration of 'SDL_Cursor'
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(65,22): warning C4018: '<': signed/unsigned mismatch
   Player.cpp
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(35,21): warning C4018: '<': signed/unsigned mismatch
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(49,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(238,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(242,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(251,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(255,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(272,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(281,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.h(9,8): error C2143: syntax error: missing ';' before '*'
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.h(9,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.h(9,16): error C2238: unexpected token(s) preceding ';'
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(50,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(51,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(56,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(57,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(240,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(244,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(253,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(257,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(276,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(277,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(293,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(309,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Source.cpp
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(35,21): warning C4018: '<': signed/unsigned mismatch
 Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(49,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(238,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(242,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(251,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(255,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(272,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(281,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(18,1): error C2653: 'Game': is not a class or namespace name
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(50,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(51,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(56,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Bullet.h(57,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(240,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(244,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(253,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(257,13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(276,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(277,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(293,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.h(309,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Generating Code...
-  Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

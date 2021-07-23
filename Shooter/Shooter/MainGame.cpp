@@ -2,11 +2,10 @@
 
 MainGame::MainGame()
 {
-	images.push_back(Graphic());
-	images.push_back(Graphic());
-	images.push_back(Graphic());
-	player = new Player(&images.at(1), &images.at(0));
-	enemy = new Enemy(&images.at(2));
+	player = new Player();
+	enemy = new Enemy();
+	objects.push_back(player);
+	objects.push_back(enemy);
 	crosshairSurface = *IMG_Load("img\\crosshair.png");
 	crosshair = SDL_CreateColorCursor(&crosshairSurface, 16, 16);
 	collisionDetector.AddHitBox(player->GetHitBox());
@@ -24,7 +23,11 @@ MainGame::~MainGame()
 
 void MainGame::Update()
 {
-	player->Cycle();
+	for (GameObject* obj : objects)
+	{
+		obj->Cycle();
+	}
+
 	collisionDetector.CheckCollisions();
 }
 
@@ -51,7 +54,31 @@ void MainGame::HandleEvents(SDL_Event e)
 			obj1->HandleCollision(obj2);
 			obj2->HandleCollision(obj1);
 		}
+		else if (e.user.code == gameEvents::SPAWN)
+		{
+			Bullet* bullet = static_cast<Bullet*>(e.user.data1);
+			SpawnObject(bullet);
+		}
+		else if (e.user.code == gameEvents::DESPAWN)
+		{
+			GameObject* obj = static_cast<GameObject*>(e.user.data1);
+			for (int i = 0; i < objects.size(); ++i)
+			{
+				if (objects.at(i) == obj)
+				{
+					objects.erase(objects.begin() + i);
+					std::cout << "DESPAWN";
+				}
+			}
+		}
 	default:
 		break;
 	}
+}
+
+
+void MainGame::SpawnObject(GameObject* obj)
+{
+	objects.push_back(obj);
+	std::cout << "SPAWN!";
 }

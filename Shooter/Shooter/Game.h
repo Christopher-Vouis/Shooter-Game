@@ -18,12 +18,19 @@ class Game
 	SDL_Event event;
 	GameMode* currentMode;
 
+	static SDL_Surface* windowSurf;
+
 public:
 	void UpdateScreen();
 	void RenderText();
-	void RenderGraphics();
+	void RenderGraphic(Graphic graphic);
 	void Cycle();
 	bool IsRunning() { return isRunning; }
 	Game();
 	~Game();
+
+	static SDL_Surface GetWindowSurf()
+	{
+		return *windowSurf;
+	}
 };

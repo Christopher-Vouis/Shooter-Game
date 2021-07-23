@@ -6,8 +6,8 @@ Menu::Menu()
 	texts.push_back(GameText("SHOOTER", { 300, 0, 400, 100 }, "impact", { 225, 0, 0 }));
 	texts.push_back(GameText("Start", { -200, 600, 200, 75 }, "impact", { 225, 225, 225 }));
 	texts.push_back(GameText("Quit", { 1000, 700, 200, 75 }, "impact", { 225, 225, 225 }));
-	images.push_back(Graphic(*IMG_Load("img\\Cursor.jpg"), -500, 600, 75, 75));
-	cursor = &images.at(0);
+	cursor = new GameObject(Graphic(*IMG_Load("img\\Cursor.jpg"), -500, 600, 75, 75));
+	objects.push_back(cursor);
 }
 
 Menu::~Menu()
