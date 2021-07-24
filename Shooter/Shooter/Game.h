@@ -29,8 +29,5 @@ public:
 	Game();
 	~Game();
 
-	static SDL_Surface GetWindowSurf()
-	{
-		return *windowSurf;
-	}
+	static SDL_Surface GetWindowSurf();
 };

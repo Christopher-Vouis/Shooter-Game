@@ -1,3 +1,7 @@
+class Bullet;
+class Player;
+class Enemy;
+class Game;
 #pragma once
 #include "Graphic.h"
 #include "HitBox.h"

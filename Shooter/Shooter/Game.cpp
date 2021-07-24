@@ -21,19 +21,26 @@ void Game::UpdateScreen()
 void Game::RenderText()
 {
 	std::vector<GameText> texts = currentMode->GetTexts();
+	SDL_Surface surf;
+	SDL_Rect rect;
 	for (int i = 0; i < texts.size(); ++i)
 	{
-		texture = SDL_CreateTextureFromSurface(renderer, &texts.at(i).Surface());
-		SDL_RenderCopy(renderer, texture, NULL, &texts.at(i).Rect());
+		surf = texts.at(i).Surface();
+		rect = texts.at(i).Rect();
+		texture = SDL_CreateTextureFromSurface(renderer, &surf);
+		SDL_RenderCopy(renderer, texture, NULL, &rect);
 		SDL_DestroyTexture(texture);
 	}
 }
 
 void Game::RenderGraphic(Graphic graphic)
 {
-		texture = SDL_CreateTextureFromSurface(renderer, &graphic.Surface());
-		SDL_RenderCopyEx(renderer, texture, NULL, &graphic.Rect(),graphic.Rotation(), &graphic.Origin(), graphic.FlipMode());
-		SDL_DestroyTexture(texture);
+	SDL_Surface surf = graphic.Surface();
+	SDL_Rect rect = graphic.Rect();
+	SDL_Point point = graphic.Origin();
+	texture = SDL_CreateTextureFromSurface(renderer, &surf);
+	SDL_RenderCopyEx(renderer, texture, NULL, &rect, graphic.Rotation(), &point, graphic.FlipMode());
+	SDL_DestroyTexture(texture);
 }
 
 void Game::Cycle()
@@ -71,6 +78,12 @@ void Game::Cycle()
 
 	SDL_Delay(16);
 	UpdateScreen();
+}
+
+SDL_Surface *Game::windowSurf;
+SDL_Surface Game::GetWindowSurf()
+{
+	return *windowSurf;
 }
 
 Game::Game()
