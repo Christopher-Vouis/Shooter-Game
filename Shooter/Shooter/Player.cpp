@@ -267,7 +267,6 @@ float Player::GetCursorAngle()
 
 void Player::TakeDamage(int damage)
 {
-	std::cout << "Ouch!" << std::endl;
 	hitpoints -= damage;
 }
 

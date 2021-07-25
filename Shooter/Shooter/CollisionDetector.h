@@ -51,8 +51,20 @@ public:
 						event.user.data1 = box1;
 						event.user.data2 = box2;
 						SDL_PushEvent(&event);
+						std::cout << "Hit" << std::endl;
 					}
 				}
+			}
+		}
+	}
+
+	void RemoveHitBox(HitBox* box)
+	{
+		for (int i = 0; i < hitBoxes.size(); ++i)
+		{
+			if (hitBoxes.at(i) == box)
+			{
+				hitBoxes.erase(hitBoxes.begin() + i);
 			}
 		}
 	}

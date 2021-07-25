@@ -58,13 +58,9 @@ void Game::Cycle()
 			case gameEvents::START:
 				delete currentMode;
 				currentMode = new MainGame();
-				break;
-			case gameEvents::COLLISION:
-			case gameEvents::SPAWN:
-			case gameEvents::DESPAWN:
-				currentMode->HandleEvents(event);
-				break;
+				break;			
 			default:
+				currentMode->HandleEvents(event);
 				break;
 			}
 		}

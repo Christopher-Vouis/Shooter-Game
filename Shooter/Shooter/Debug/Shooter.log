@@ -1,5 +1,6 @@
-﻿  Game.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(35,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\HitBox.h(49,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(26,20): warning C4018: '<': signed/unsigned mismatch
+﻿  MainGame.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\CollisionDetector.h(63,21): warning C4018: '<': signed/unsigned mismatch
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(19,18): warning C4150: deletion of pointer to incomplete type 'SDL_Cursor'; no destructor called
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\packages\sdl2.nuget.2.0.14\build\native\include\SDL_mouse.h(41): message : see declaration of 'SDL_Cursor'
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(63,22): warning C4018: '<': signed/unsigned mismatch
   Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

@@ -13,6 +13,7 @@ class GameObject
 protected:
 	std::vector<Graphic> sprites;
 	Graphic* currentSprite;
+	SDL_Point position;
 
 public:
 	virtual void HandleEvents(SDL_Event e) {};
@@ -23,12 +24,14 @@ public:
 
 	virtual void SetPosition(int x, int y)
 	{
+		position = { x, y };
 		currentSprite->SetPosition(x, y);
 	}
 
 	virtual void MoveObject(int x, int y)
 	{
 		currentSprite->Move(x, y);
+		position = currentSprite->Pos();
 	}
 
 	GameObject() {};
@@ -37,5 +40,6 @@ public:
 		sprites.push_back(sprite);
 		currentSprite = &sprites.at(0);
 	}
+	virtual ~GameObject() {};
 };
 

@@ -47,17 +47,15 @@ void MainGame::HandleEvents(SDL_Event e)
 		player->HandleEvents(e);
 		break;
 	case SDL_USEREVENT:
-		if (e.user.code == gameEvents::COLLISION)
+		if (e.user.code == gameEvents::NEW_COLLIDER)
 		{
-			GameObject* obj1 = static_cast<HitBox*>(e.user.data1)->GetObject();
-			GameObject* obj2 = static_cast<HitBox*>(e.user.data2)->GetObject();
-			obj1->HandleCollision(obj2);
-			obj2->HandleCollision(obj1);
+			HitBox* toAdd = static_cast<HitBox*>(e.user.data1);
+			collisionDetector.AddHitBox(toAdd);
 		}
-		else if (e.user.code == gameEvents::SPAWN)
+		else if(e.user.code == gameEvents::REMOVE_COLLIDER)
 		{
-			Bullet* bullet = static_cast<Bullet*>(e.user.data1);
-			SpawnObject(bullet);
+			HitBox* toRemove = static_cast<HitBox*>(e.user.data1);
+			collisionDetector.RemoveHitBox(toRemove);
 		}
 		else if (e.user.code == gameEvents::DESPAWN)
 		{
@@ -66,10 +64,26 @@ void MainGame::HandleEvents(SDL_Event e)
 			{
 				if (objects.at(i) == obj)
 				{
+					delete objects.at(i);
 					objects.erase(objects.begin() + i);
-					std::cout << "DESPAWN";
 				}
 			}
+		}
+		else if (e.user.code == gameEvents::COLLISION)
+		{
+			GameObject* obj1 = static_cast<HitBox*>(e.user.data1)->GetObject();
+			GameObject* obj2 = static_cast<HitBox*>(e.user.data2)->GetObject();
+			if (obj1 != nullptr && obj2 != nullptr)
+			{
+				obj1->HandleCollision(obj2);
+				obj2->HandleCollision(obj1);
+			}
+
+		}
+		else if (e.user.code == gameEvents::SPAWN)
+		{
+			Bullet* bullet = static_cast<Bullet*>(e.user.data1);
+			SpawnObject(bullet);
 		}
 	default:
 		break;
@@ -80,5 +94,4 @@ void MainGame::HandleEvents(SDL_Event e)
 void MainGame::SpawnObject(GameObject* obj)
 {
 	objects.push_back(obj);
-	std::cout << "SPAWN!";
 }
