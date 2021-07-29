@@ -1,10 +1,8 @@
 #include "Game.h"
+#include <string>
 
 void Game::UpdateScreen()
 {
-	SDL_FreeSurface(surface);
-	SDL_RenderClear(renderer);
-	SDL_DestroyTexture(texture);
 	RenderText();
 	
 	for (GameObject* obj : currentMode->GetObjects())
@@ -16,6 +14,9 @@ void Game::UpdateScreen()
 	}
 
 	SDL_RenderPresent(renderer);
+	SDL_FreeSurface(surface);
+	SDL_RenderClear(renderer);
+	SDL_DestroyTexture(texture);
 };
 
 void Game::RenderText()
@@ -41,6 +42,7 @@ void Game::RenderGraphic(Graphic graphic)
 	texture = SDL_CreateTextureFromSurface(renderer, &surf);
 	SDL_RenderCopyEx(renderer, texture, NULL, &rect, graphic.Rotation(), &point, graphic.FlipMode());
 	SDL_DestroyTexture(texture);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
 void Game::Cycle()
@@ -57,7 +59,7 @@ void Game::Cycle()
 			{
 			case gameEvents::START:
 				delete currentMode;
-				currentMode = new MainGame();
+				currentMode = new MainGame(renderer);
 				break;			
 			default:
 				currentMode->HandleEvents(event);

@@ -1,13 +1,15 @@
 #include "MainGame.h"
 
-MainGame::MainGame()
+MainGame::MainGame(SDL_Renderer* rend)
 {
+	renderer = rend;
 	player = new Player();
 	enemy = new Enemy();
 	objects.push_back(player);
 	objects.push_back(enemy);
 	crosshairSurface = *IMG_Load("img\\crosshair.png");
 	crosshair = SDL_CreateColorCursor(&crosshairSurface, 16, 16);
+	collisionDetector = CollisionDetector(renderer);
 	collisionDetector.AddHitBox(player->GetHitBox());
 	collisionDetector.AddHitBox(enemy->GetHitBox());
 	SDL_SetCursor(crosshair);

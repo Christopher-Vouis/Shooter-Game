@@ -7,6 +7,7 @@ class Game;
 #include "HitBox.h"
 #include <vector>
 #include "GameEvents.h"
+#include "Animation.h"
 
 class GameObject
 {

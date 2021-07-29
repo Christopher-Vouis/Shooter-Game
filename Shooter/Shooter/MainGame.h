@@ -12,10 +12,11 @@ class MainGame : public GameMode
 	SDL_Surface crosshairSurface;
 	SDL_Cursor* crosshair;
 	int* crosshairX, *crosshairY;
-	CollisionDetector collisionDetector;
+	CollisionDetector collisionDetector = CollisionDetector(renderer);
+	SDL_Renderer* renderer;
 
 public:
-	MainGame();
+	MainGame(SDL_Renderer* rend);
 	~MainGame();
 	void HandleInputs(SDL_Event e);
 	void HandleEvents(SDL_Event e);

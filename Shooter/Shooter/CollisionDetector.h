@@ -8,6 +8,7 @@ class CollisionDetector
 	std::vector<HitBox*> hitBoxes;
 	SDL_Event event;
 	HitBox* box1, *box2;
+	SDL_Renderer* renderer;
 
 	bool AreColliding(SDL_Rect first, SDL_Rect second)
 	{
@@ -23,8 +24,9 @@ class CollisionDetector
 	}
 
 public:
-	CollisionDetector()
+	CollisionDetector(SDL_Renderer* rend)
 	{
+		renderer = rend;
 		event.type = SDL_USEREVENT;
 		event.user.code = gameEvents::COLLISION;
 		box1 = new HitBox();
@@ -40,11 +42,12 @@ public:
 	{
 		for(auto box : hitBoxes)
 		{
+			DrawHitBox(*box);
 			for (auto otherBox : hitBoxes)
 			{
 				if (otherBox != box)
 				{
-					if (AreColliding(box->GetBox(), otherBox->GetBox()))
+					if (AreColliding(box->GetBox(), otherBox->GetBox()) && box->GetObject() != otherBox->GetObject())
 					{
 						*box1 = *box;
 						*box2 = *otherBox;
@@ -67,6 +70,14 @@ public:
 				hitBoxes.erase(hitBoxes.begin() + i);
 			}
 		}
+	}
+
+	void DrawHitBox(HitBox box)
+	{
+		SDL_SetRenderDrawColor(renderer, 225, 50, 50, 255);
+		SDL_Rect b = box.GetBox();
+		SDL_RenderDrawRect(renderer, &b);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	}
 };
 

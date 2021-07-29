@@ -74,53 +74,71 @@ void Bullet::Move()
 
 void Bullet::ArrangeHitBoxes(int angle)
 {
+	SDL_Rect* re = new SDL_Rect({ 100,100, 10, 10 });
+	const SDL_Rect* r = re;
+
 	if ((angle < 0 && angle >= -30) || (angle > 0 && angle <= 30))
 	{
 		//horizontal left to right
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x,position.y - 4 , 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x + 9, position.y - 4 , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 	else if ((angle < -30 && angle >= -60))
 	{
 		//diagonal up left to right
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x,position.y, 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x + 9, position.y - 9 , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 	else if ((angle < -60 && angle >= -120))
 	{
 		//vertical bottom to top
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x + 4, position.y - 8 , 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x + 4, position.y + 1 , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 	else if ((angle < -120 && angle >= -150))
 	{
 		//diagonal up right to left
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x + 9,position.y, 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x, position.y - 9, 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 	else if ((angle < -150 && angle >= -210))
 	{
 		//horizontal right to left
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x,position.y - 4 , 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x + 9, position.y - 4 , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 	else if ((angle < -210 && angle >= -240))
 	{
 		//diagonal down right to left
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x + 9, position.y-9, 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x, position.y , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 	else if ((angle < -210 && angle >= -65) || (angle > 30 && angle < 60))
 	{
 		//vertical down
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x, position.y - 9, 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x + 9, position.y , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
-	else if ((angle > 60))
+	else if ((angle > 60) || (angle < -240))
 	{
-		//diag down right
-		hitBox1 = HitBox(this, { position.x - 1, position.y - 1, 9, 4 });
-		hitBox2 = HitBox(this, { position.x + 1 + currentSprite->Rect().w / 2, position.y - 1, 9, 4 });
+		*re = { position.x + 4, position.y - 8 , 9, 9 };
+		hitBox1 = HitBox(this, *re);
+		*re = { position.x + 4, position.y + 1 , 9, 9 };
+		hitBox2 = HitBox(this, *re);
 	}
 
 	SDL_Event* event = new SDL_Event();
