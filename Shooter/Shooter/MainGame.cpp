@@ -1,18 +1,19 @@
 #include "MainGame.h"
 
-MainGame::MainGame(SDL_Renderer* rend)
+MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf)
 {
+	snakeTimer = 0;
 	renderer = rend;
+	surface = surf;
 	player = new Player();
-	enemy = new Enemy();
 	objects.push_back(player);
-	objects.push_back(enemy);
 	crosshairSurface = *IMG_Load("img\\crosshair.png");
 	crosshair = SDL_CreateColorCursor(&crosshairSurface, 16, 16);
 	collisionDetector = CollisionDetector(renderer);
-	collisionDetector.AddHitBox(player->GetHitBox());
-	collisionDetector.AddHitBox(enemy->GetHitBox());
 	SDL_SetCursor(crosshair);
+	lastTime = std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1);
+	thisTime = lastTime;
+	srand(time(NULL));
 }
 
 MainGame::~MainGame()
@@ -28,9 +29,27 @@ void MainGame::Update()
 	for (GameObject* obj : objects)
 	{
 		obj->Cycle();
+		if (IsOutOfBounds(obj->GetGraphic().Rect()))
+		{
+			SDL_Event* event = new SDL_Event();
+			event->type = SDL_USEREVENT;
+			event->user.code = gameEvents::DESPAWN;
+			event->user.data1 = obj;
+			SDL_PushEvent(event);
+		}
 	}
 
 	collisionDetector.CheckCollisions();
+	
+	thisTime = std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1);;
+	snakeTimer += thisTime - lastTime;
+	lastTime = thisTime;
+
+	if (snakeTimer >= 3000)
+	{
+		SpawnObject(new Snake(surface->w, surface->h));
+		snakeTimer = 0;
+	}
 }
 
 void MainGame::HandleInputs(SDL_Event e)
@@ -68,18 +87,24 @@ void MainGame::HandleEvents(SDL_Event e)
 				{
 					delete objects.at(i);
 					objects.erase(objects.begin() + i);
+					break;
 				}
 			}
 		}
 		else if (e.user.code == gameEvents::COLLISION)
 		{
-			GameObject* obj1 = static_cast<HitBox*>(e.user.data1)->GetObject();
-			GameObject* obj2 = static_cast<HitBox*>(e.user.data2)->GetObject();
-			if (obj1 != nullptr && obj2 != nullptr)
-			{
-				obj1->HandleCollision(obj2);
-				obj2->HandleCollision(obj1);
-			}
+				HitBox* b1 = static_cast<HitBox*>(e.user.data1);
+				HitBox* b2 = static_cast<HitBox*>(e.user.data2);
+
+				GameObject* obj1 = b1->GetObject();
+				GameObject* obj2 = b2->GetObject();
+
+				if (std::count(objects.begin(), objects.end(), obj1) &&
+					std::count(objects.begin(), objects.end(), obj2))
+				{
+					obj1->HandleCollision(obj2);
+					obj2->HandleCollision(obj1);
+				}
 
 		}
 		else if (e.user.code == gameEvents::SPAWN)
@@ -96,4 +121,17 @@ void MainGame::HandleEvents(SDL_Event e)
 void MainGame::SpawnObject(GameObject* obj)
 {
 	objects.push_back(obj);
+}
+
+bool MainGame::IsOutOfBounds(SDL_Rect objBox)
+{
+	if (objBox.x + objBox.w < 0 || objBox.x > surface->w ||
+		objBox.y + objBox.h < 0 || objBox.y > surface->h)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

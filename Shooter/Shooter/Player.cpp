@@ -26,6 +26,12 @@ Player::Player()
 	keyboardState = SDL_GetKeyboardState(NULL);
 
 	hitBox = new HitBox(static_cast<GameObject*>(this), currentSprite->Rect());
+
+	SDL_Event* event = new SDL_Event();
+	event->type = SDL_USEREVENT;
+	event->user.code = gameEvents::NEW_COLLIDER;
+	event->user.data1 = hitBox;
+	SDL_PushEvent(event);
 }
 
 Player::~Player()
@@ -37,11 +43,6 @@ Player::~Player()
 Graphic Player::GetSprites()
 {
 	return *currentSprite;
-}
-
-HitBox* Player::GetHitBox()
-{
-	return hitBox;
 }
 
 void Player::Cycle()
@@ -178,7 +179,7 @@ void Player::HandleEvents(SDL_Event e)
 
 void Player::HandleCollision(GameObject* collision)
 {
-	if (static_cast<Enemy*>(collision))
+	if (dynamic_cast<Enemy*>(collision))
 	{
 		TakeDamage(1);
 	}

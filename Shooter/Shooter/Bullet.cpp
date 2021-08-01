@@ -2,15 +2,12 @@
 
 Bullet::Bullet(SDL_Point point, int angle)
 {
-	windowSurf = Game::GetWindowSurf();
 	float radians = angle * (M_PI / 180);
 	position = point;
 	sprites.push_back(Graphic(*IMG_Load("img//cowboy//shot.png"), point.x, point.y, 16, 2, angle, { 8,1 }));
 	currentSprite = &sprites.at(0);
 	vectorX = cos(radians);
 	vectorY = sin(radians);
-	
-	std::cout << angle << std::endl;
 	ArrangeHitBoxes(angle);
 };
 
@@ -32,18 +29,6 @@ Bullet::~Bullet()
 void Bullet::Cycle()
 {
 	Move();
-
-	if (currentSprite->Pos().x + currentSprite->Rect().w < 0 ||
-		currentSprite->Pos().x > windowSurf.w ||
-		currentSprite->Pos().y + currentSprite->Rect().h < 0 ||
-		currentSprite->Pos().y > windowSurf.h)
-	{
-		SDL_Event* event = new SDL_Event();
-		event->type = SDL_USEREVENT;
-		event->user.code = gameEvents::DESPAWN;
-		event->user.data1 = this;
-		SDL_PushEvent(event);
-	}
 }
 
 void Bullet::Move()

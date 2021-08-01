@@ -13,6 +13,7 @@ class HitBox
 public:
 	HitBox();
 	HitBox(GameObject* obj, SDL_Rect inBox);
+	~HitBox() {};
 	bool AddCollision(GameObject* col);
 	bool RemoveCollision(GameObject* col);
 	SDL_Rect GetBox();

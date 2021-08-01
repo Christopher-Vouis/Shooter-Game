@@ -15,7 +15,6 @@ class Player : public GameObject
 	SDL_Surface idleSurface, armSurface;
 	Animation* walkAnim;
 	Graphic* arm;
-	HitBox* hitBox;
 
 	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY, armAngle;
 	bool invincible = false;
@@ -23,15 +22,6 @@ class Player : public GameObject
 	double moveProgress = 0.0;
 	const Uint8* keyboardState;
 	SDL_Point armPoint, bulletPoint;
-
-	enum directions
-	{
-		NONE = 0,
-		UP = 1,
-		DOWN = 2,
-		LEFT = 4,
-		RIGHT = 8
-	};
 
 	enum class playerState
 	{
@@ -47,7 +37,6 @@ public:
 	Player();
 	~Player();
 	Graphic GetSprites();
-	HitBox* GetHitBox();
 	void Cycle();
 	void HandleInputs(SDL_Event e);
 	void HandleEvents(SDL_Event e);

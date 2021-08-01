@@ -14,6 +14,7 @@ protected:
 	std::vector<GameObject*> objects;
 	std::vector<GameText> texts;
 	std::vector<Graphic> images;
+
 public:
 	virtual void HandleInputs(SDL_Event e) {};
 	virtual void HandleEvents(SDL_Event e) {};

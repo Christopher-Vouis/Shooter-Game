@@ -59,7 +59,7 @@ void Game::Cycle()
 			{
 			case gameEvents::START:
 				delete currentMode;
-				currentMode = new MainGame(renderer);
+				currentMode = new MainGame(renderer, surface);
 				break;			
 			default:
 				currentMode->HandleEvents(event);
@@ -78,19 +78,12 @@ void Game::Cycle()
 	UpdateScreen();
 }
 
-SDL_Surface *Game::windowSurf;
-SDL_Surface Game::GetWindowSurf()
-{
-	return *windowSurf;
-}
-
 Game::Game()
 {
 	SDL_SetMainReady();
 	TTF_Init();
 	isRunning = true;
 	window = SDL_CreateWindow("Shooter", 750, 250, 1000, 1000, 0);
-	windowSurf = SDL_GetWindowSurface(window);
 	surface = SDL_GetWindowSurface(window);
 	renderer = SDL_CreateRenderer(window, -1, 0);
 	currentMode = new Menu();

@@ -1,35 +1,27 @@
 #pragma once
 #include "GameObject.h"
+#include "Bullet.h"
+#include <chrono>
+
 class Enemy : public GameObject
 {
-	HitBox* hitBox;
+protected:
 	Animation* animation;
+	double moveSpeed = 0.75;
+	double moveProgress = 0.0;
+	int xMove, yMove;
+	int hitpoints;
+	directions direction;
+	SDL_Surface windowSurface;
 
 public:
-	Enemy()
-	{
-		sprites.push_back(Graphic());
-		currentSprite = &sprites.at(0);
-		*currentSprite = Graphic(*IMG_Load("img\\snake1.png"), 300, 500, 96, 96);
-		hitBox = new HitBox(static_cast<GameObject*>(this), { currentSprite->Rect().x, currentSprite->Rect().y + 30, 96, 44 });
-		std::string walkFrames[2]{ "img\\snake1.png","img\\snake2.png" };
-		animation = new Animation(walkFrames, 2, 30);
-	}
-
-	~Enemy()
-	{
-		delete hitBox;
-	}
-
-	void Cycle()
-	{
-		animation->Cycle();
-		currentSprite->SetSurface(animation->GetSurface());
-	}
-
-	HitBox* GetHitBox()
-	{
-		return hitBox;
-	}
+	Enemy();
+	~Enemy();
+	virtual void Cycle();
+	virtual void MoveObject();
+	virtual void MoveObject(int x, int y);
+	virtual void HandleCollision(GameObject* collision);
+	virtual void TakeDamage(int dmg);
+	virtual void Die();
 };
 

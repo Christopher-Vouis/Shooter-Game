@@ -9,6 +9,7 @@ class CollisionDetector
 	SDL_Event event;
 	HitBox* box1, *box2;
 	SDL_Renderer* renderer;
+	SDL_Surface* surface;
 
 	bool AreColliding(SDL_Rect first, SDL_Rect second)
 	{
@@ -40,10 +41,10 @@ public:
 
 	void CheckCollisions()
 	{
-		for(auto box : hitBoxes)
+		for(HitBox* box : hitBoxes)
 		{
 			DrawHitBox(*box);
-			for (auto otherBox : hitBoxes)
+			for (HitBox* otherBox : hitBoxes)
 			{
 				if (otherBox != box)
 				{
@@ -68,6 +69,7 @@ public:
 			if (hitBoxes.at(i) == box)
 			{
 				hitBoxes.erase(hitBoxes.begin() + i);
+				break;
 			}
 		}
 	}
