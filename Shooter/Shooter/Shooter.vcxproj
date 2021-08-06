@@ -150,6 +150,7 @@
     <ClCompile Include="GameText.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="HitBox.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="GameText.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="HitBox.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />

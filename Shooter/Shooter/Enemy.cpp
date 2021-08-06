@@ -1,7 +1,7 @@
 #include "Enemy.h"
 Enemy::Enemy()
 {
-	//windowSurface = Game::GetWindowSurf();
+	pointValue = 1;
 }
 
 Enemy::~Enemy()
@@ -82,6 +82,10 @@ void Enemy::Die()
 	event->type = SDL_USEREVENT;
 	event->user.code = gameEvents::DESPAWN;
 	event->user.data1 = this;
+	SDL_PushEvent(event);
+
+	event->user.code = gameEvents::SCORE_CHANGE;
+	event->user.data1 = &pointValue;
 	SDL_PushEvent(event);
 	std::cout << "I'm Dead!\n";
 }

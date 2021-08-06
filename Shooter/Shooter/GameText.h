@@ -11,6 +11,7 @@ class GameText : public Graphic
 	SDL_Color _color;
 
 public:
+	GameText();
 	GameText(std::string text, SDL_Rect rect, std::string font, SDL_Color color);
 	~GameText();
 	std::string Text() { return _text; }

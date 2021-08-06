@@ -4,10 +4,13 @@
 #include "Player.h"
 #include "CollisionDetector.h"
 #include <chrono>
+#include "HUD.h"
+
 class MainGame : public GameMode
 {
 	Player* player;
 	GameObject* enemy;
+	HUD* hud;
 	bool isPaused;
 	SDL_Surface crosshairSurface;
 	SDL_Cursor* crosshair;
@@ -25,5 +28,6 @@ public:
 	void Update();
 	void SpawnObject(GameObject* obj);
 	bool IsOutOfBounds(SDL_Rect objBox);
+	std::vector<GameText> GetTexts();
 };
 

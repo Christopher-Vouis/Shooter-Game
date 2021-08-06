@@ -14,6 +14,8 @@ MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf)
 	lastTime = std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1);
 	thisTime = lastTime;
 	srand(time(NULL));
+	hud = new HUD();
+	texts = hud->GetTexts();
 }
 
 MainGame::~MainGame()
@@ -40,7 +42,6 @@ void MainGame::Update()
 	}
 
 	collisionDetector.CheckCollisions();
-	
 	thisTime = std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1);;
 	snakeTimer += thisTime - lastTime;
 	lastTime = thisTime;
@@ -68,17 +69,21 @@ void MainGame::HandleEvents(SDL_Event e)
 		player->HandleEvents(e);
 		break;
 	case SDL_USEREVENT:
-		if (e.user.code == gameEvents::NEW_COLLIDER)
+		switch (e.user.code)
+		{
+		case gameEvents::NEW_COLLIDER:
 		{
 			HitBox* toAdd = static_cast<HitBox*>(e.user.data1);
 			collisionDetector.AddHitBox(toAdd);
+			break;
 		}
-		else if(e.user.code == gameEvents::REMOVE_COLLIDER)
+		case gameEvents::REMOVE_COLLIDER:
 		{
 			HitBox* toRemove = static_cast<HitBox*>(e.user.data1);
 			collisionDetector.RemoveHitBox(toRemove);
+			break;
 		}
-		else if (e.user.code == gameEvents::DESPAWN)
+		case gameEvents::DESPAWN:
 		{
 			GameObject* obj = static_cast<GameObject*>(e.user.data1);
 			for (int i = 0; i < objects.size(); ++i)
@@ -90,27 +95,37 @@ void MainGame::HandleEvents(SDL_Event e)
 					break;
 				}
 			}
+			break;
 		}
-		else if (e.user.code == gameEvents::COLLISION)
+		case gameEvents::COLLISION:
 		{
-				HitBox* b1 = static_cast<HitBox*>(e.user.data1);
-				HitBox* b2 = static_cast<HitBox*>(e.user.data2);
+			HitBox* b1 = static_cast<HitBox*>(e.user.data1);
+			HitBox* b2 = static_cast<HitBox*>(e.user.data2);
 
-				GameObject* obj1 = b1->GetObject();
-				GameObject* obj2 = b2->GetObject();
+			GameObject* obj1 = b1->GetObject();
+			GameObject* obj2 = b2->GetObject();
 
-				if (std::count(objects.begin(), objects.end(), obj1) &&
-					std::count(objects.begin(), objects.end(), obj2))
-				{
-					obj1->HandleCollision(obj2);
-					obj2->HandleCollision(obj1);
-				}
-
+			if (std::count(objects.begin(), objects.end(), obj1) &&
+				std::count(objects.begin(), objects.end(), obj2))
+			{
+				obj1->HandleCollision(obj2);
+				obj2->HandleCollision(obj1);
+			}
+			break;
 		}
-		else if (e.user.code == gameEvents::SPAWN)
+		case gameEvents::SPAWN:
 		{
 			Bullet* bullet = static_cast<Bullet*>(e.user.data1);
 			SpawnObject(bullet);
+			break;
+		}
+		case gameEvents::SCORE_CHANGE:
+		{
+			hud->ChangeScore(1);
+			break;
+		}
+		default:
+			break;
 		}
 	default:
 		break;
@@ -134,4 +149,9 @@ bool MainGame::IsOutOfBounds(SDL_Rect objBox)
 	{
 		return false;
 	}
+}
+
+std::vector<GameText> MainGame::GetTexts()
+{
+	return hud->GetTexts();
 }

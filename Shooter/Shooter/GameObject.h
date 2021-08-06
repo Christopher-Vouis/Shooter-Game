@@ -9,11 +9,13 @@ class HitBox;
 #include <vector>
 #include "GameEvents.h"
 #include "Animation.h"
+#include "GameText.h"
 
 class GameObject
 {
 protected:
-	std::vector<Graphic> sprites;
+	std::vector<Graphic> sprites;	
+	std::vector<GameText> texts;
 	Graphic* currentSprite;
 	SDL_Point position;
 	HitBox* hitBox;
@@ -25,6 +27,7 @@ public:
 	virtual HitBox *GetHitBox() { return hitBox; }
 	Graphic GetGraphic() { return  *currentSprite; }
 	std::vector<Graphic> GetGraphics() { return  sprites; }
+	std::vector<GameText> GetTexts() { return  texts; }
 
 
 	enum directions

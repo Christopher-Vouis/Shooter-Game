@@ -1,5 +1,13 @@
 #include "GameText.h"
 
+GameText::GameText()
+{
+	_font = TTF_OpenFont(std::string("Fonts/impact.ttf").c_str(), 25);
+	_color = { 225, 225, 225 };
+	_text = "";
+	_rect = { 0,0,0,0 };
+}
+
 GameText::GameText(std::string text, SDL_Rect rect, std::string font, SDL_Color color)
 {
 	_rect = rect;

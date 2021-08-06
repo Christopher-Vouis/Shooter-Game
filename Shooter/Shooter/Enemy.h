@@ -11,6 +11,7 @@ protected:
 	double moveProgress = 0.0;
 	int xMove, yMove;
 	int hitpoints;
+	int pointValue;
 	directions direction;
 	SDL_Surface windowSurface;
 
