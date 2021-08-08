@@ -1,13 +1,12 @@
 #include "MainGame.h"
 
-MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf)
+MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 {
 	snakeTimer = 0;
-	renderer = rend;
-	surface = surf;
 	player = new Player();
 	objects.push_back(player);
 	crosshairSurface = *IMG_Load("img\\crosshair.png");
+	bgSurface = *IMG_Load("img\\background.png");
 	crosshair = SDL_CreateColorCursor(&crosshairSurface, 16, 16);
 	collisionDetector = CollisionDetector(renderer);
 	SDL_SetCursor(crosshair);
@@ -16,6 +15,8 @@ MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf)
 	srand(time(NULL));
 	hud = new HUD();
 	texts = hud->GetTexts();
+
+	background = Graphic(bgSurface, 0, 0, surface->w, surface->h);
 }
 
 MainGame::~MainGame()
@@ -154,4 +155,9 @@ bool MainGame::IsOutOfBounds(SDL_Rect objBox)
 std::vector<GameText> MainGame::GetTexts()
 {
 	return hud->GetTexts();
+}
+
+Graphic MainGame::GetBackground()
+{
+	return background;
 }

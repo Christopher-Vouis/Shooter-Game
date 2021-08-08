@@ -12,13 +12,12 @@ class MainGame : public GameMode
 	GameObject* enemy;
 	HUD* hud;
 	bool isPaused;
-	SDL_Surface crosshairSurface;
+	SDL_Surface crosshairSurface, bgSurface;
 	SDL_Cursor* crosshair;
 	int* crosshairX, *crosshairY;
 	CollisionDetector collisionDetector = CollisionDetector(renderer);
-	SDL_Renderer* renderer;
-	SDL_Surface* surface;
 	int snakeTimer, lastTime, thisTime;
+	Graphic background;
 
 public:
 	MainGame(SDL_Renderer* rend, SDL_Surface* surf);
@@ -29,5 +28,6 @@ public:
 	void SpawnObject(GameObject* obj);
 	bool IsOutOfBounds(SDL_Rect objBox);
 	std::vector<GameText> GetTexts();
+	Graphic GetBackground();
 };
 

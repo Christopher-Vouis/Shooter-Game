@@ -3,6 +3,7 @@
 
 void Game::UpdateScreen()
 {
+	RenderGraphic(currentMode->GetBackground());
 	RenderText();
 	
 	for (GameObject* obj : currentMode->GetObjects())
@@ -86,7 +87,7 @@ Game::Game()
 	window = SDL_CreateWindow("Shooter", 750, 250, 1000, 1000, 0);
 	surface = SDL_GetWindowSurface(window);
 	renderer = SDL_CreateRenderer(window, -1, 0);
-	currentMode = new Menu();
+	currentMode = new Menu(renderer, surface);
 	SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0x00, 0x00, 0x00));
 	SDL_UpdateWindowSurface(window);
 }

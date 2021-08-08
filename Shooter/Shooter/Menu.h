@@ -13,7 +13,7 @@ class Menu : public GameMode
 	GameObject* cursor;
 
 public:
-	Menu();
+	Menu(SDL_Renderer* rend, SDL_Surface* surf);
 	~Menu();
 	void HandleInputs(SDL_Event e);
 	void HandleEvents(SDL_Event e);

@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu()
+Menu::Menu(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 {
 	isIntro = true;
 	texts.push_back(GameText("SHOOTER", { 300, 0, 400, 100 }, "impact", { 225, 0, 0 }));
