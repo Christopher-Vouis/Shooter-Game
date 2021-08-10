@@ -5,6 +5,7 @@
 #include "CollisionDetector.h"
 #include <chrono>
 #include "HUD.h"
+#include "Boundary.h"
 
 class MainGame : public GameMode
 {
@@ -18,6 +19,7 @@ class MainGame : public GameMode
 	CollisionDetector collisionDetector = CollisionDetector(renderer);
 	int snakeTimer, lastTime, thisTime;
 	Graphic background;
+	Boundary topBound = Boundary({ 0,0,1000, 332 });
 
 public:
 	MainGame(SDL_Renderer* rend, SDL_Surface* surf);

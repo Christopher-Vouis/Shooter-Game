@@ -19,13 +19,14 @@ Player::Player()
 		0,
 		{ 34, 48 }
 	);
-
 	armPoint = { currentSprite->Pos().x + arm->Origin().x, currentSprite->Pos().y + arm->Origin().y };
 	bulletPoint = { armPoint.x + arm->Rect().w, armPoint.y + arm->Rect().h / 2 };
 	state = playerState::IDLE;
 	keyboardState = SDL_GetKeyboardState(NULL);
-
 	hitBox = new HitBox(static_cast<GameObject*>(this), currentSprite->Rect());
+
+	position = currentSprite->Pos();
+	lastPos = position;
 
 	SDL_Event* event = new SDL_Event();
 	event->type = SDL_USEREVENT;
@@ -183,6 +184,16 @@ void Player::HandleCollision(GameObject* collision)
 	{
 		TakeDamage(1);
 	}
+	if (dynamic_cast<Boundary*>(collision))
+	{
+		moveProgress -= (int)moveProgress;
+		currentSprite->Move(-xMove, -yMove);
+		hitBox->Move(-xMove, -yMove);
+		arm->Move(-xMove, -yMove);
+		armPoint = { armPoint.x - xMove, armPoint.y - yMove };
+		bulletPoint = CalculateBulletPoint();
+		position = currentSprite->Pos();
+	}
 }
 
 void Player::Move()
@@ -191,6 +202,7 @@ void Player::Move()
 
 	if (moveProgress > 1.0)
 	{
+		lastPos = position;
 		if (movementDir & directions::UP)
 		{
 			yMove = -moveProgress;
@@ -223,6 +235,8 @@ void Player::Move()
 		arm->Move(xMove, yMove);
 		armPoint = { armPoint.x + xMove, armPoint.y + yMove };
 		bulletPoint = CalculateBulletPoint();
+		position = currentSprite->Pos();
+		lastMove = { xMove, yMove };
 	}
 }
 
@@ -285,4 +299,15 @@ void Player::SetFlipH(bool isFlip)
 		currentSprite->SetFlipH(false);
 		arm->SetFlipV(false);
 	}
+}
+
+void Player::SetPosition(int x, int y)
+{
+	lastPos = position;
+	position = { x, y };
+	currentSprite->SetPosition(x, y);
+	hitBox->SetPosition(x, y);
+	arm->SetPosition(currentSprite->Pos().x - currentSprite->Rect().w / 30, currentSprite->Pos().y - 4);
+	armPoint = { currentSprite->Pos().x + arm->Origin().x, currentSprite->Pos().y + arm->Origin().y };
+	bulletPoint = CalculateBulletPoint();
 }

@@ -3,7 +3,7 @@
 
 void Game::UpdateScreen()
 {
-	RenderGraphic(currentMode->GetBackground());
+	//RenderGraphic(currentMode->GetBackground());
 	RenderText();
 	
 	for (GameObject* obj : currentMode->GetObjects())
@@ -74,7 +74,6 @@ void Game::Cycle()
 	}
 
 	currentMode->Update();
-
 	SDL_Delay(16);
 	UpdateScreen();
 }

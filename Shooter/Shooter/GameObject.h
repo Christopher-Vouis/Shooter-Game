@@ -25,7 +25,7 @@ public:
 	virtual void HandleCollision(GameObject* collision) {};
 	virtual void Cycle() {};
 	virtual HitBox *GetHitBox() { return hitBox; }
-	Graphic GetGraphic() { return  *currentSprite; }
+	virtual Graphic GetGraphic() { return  *currentSprite; }
 	std::vector<Graphic> GetGraphics() { return  sprites; }
 	std::vector<GameText> GetTexts() { return  texts; }
 
@@ -39,31 +39,10 @@ public:
 		RIGHT = 8
 	};
 
-	virtual void SetPosition(int x, int y)
-	{
-		position = { x, y };
-		currentSprite->SetPosition(x, y);
-	}
-
-	virtual void MoveObject(int x, int y)
-	{
-		currentSprite->Move(x, y);
-		position = currentSprite->Pos();
-	}
-
-	GameObject() {};
-	GameObject(Graphic sprite)
-	{
-		sprites.push_back(sprite);
-		currentSprite = &sprites.at(0);
-	}
-	virtual ~GameObject() 
-	{
-		SDL_Event* event = new SDL_Event();
-		event->type = SDL_USEREVENT;
-		event->user.code = gameEvents::REMOVE_COLLIDER;
-		event->user.data1 = hitBox;
-		SDL_PushEvent(event);
-	};
+	virtual void SetPosition(int x, int y);
+	virtual void MoveObject(int x, int y);
+	GameObject();
+	GameObject(Graphic sprite);
+	virtual ~GameObject();
 };
 

@@ -15,8 +15,8 @@ MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 	srand(time(NULL));
 	hud = new HUD();
 	texts = hud->GetTexts();
-
 	background = Graphic(bgSurface, 0, 0, surface->w, surface->h);
+	objects.push_back(&topBound);
 }
 
 MainGame::~MainGame()
@@ -32,13 +32,16 @@ void MainGame::Update()
 	for (GameObject* obj : objects)
 	{
 		obj->Cycle();
-		if (IsOutOfBounds(obj->GetGraphic().Rect()))
+		if (obj->GetGraphics().size() > 0)
 		{
-			SDL_Event* event = new SDL_Event();
-			event->type = SDL_USEREVENT;
-			event->user.code = gameEvents::DESPAWN;
-			event->user.data1 = obj;
-			SDL_PushEvent(event);
+			if (IsOutOfBounds(obj->GetGraphic().Rect()))
+			{
+				SDL_Event* event = new SDL_Event();
+				event->type = SDL_USEREVENT;
+				event->user.code = gameEvents::DESPAWN;
+				event->user.data1 = obj;
+				SDL_PushEvent(event);
+			}
 		}
 	}
 
@@ -49,7 +52,7 @@ void MainGame::Update()
 
 	if (snakeTimer >= 3000)
 	{
-		SpawnObject(new Snake(surface->w, surface->h));
+		//SpawnObject(new Snake(surface->w, surface->h));
 		snakeTimer = 0;
 	}
 }

@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "GameEvents.h"
+#include "Boundary.h"
 
 class Player : public GameObject
 {
@@ -21,7 +22,7 @@ class Player : public GameObject
 	double moveSpeed = 0.75;
 	double moveProgress = 0.0;
 	const Uint8* keyboardState;
-	SDL_Point armPoint, bulletPoint;
+	SDL_Point armPoint, bulletPoint, lastPos, lastMove;
 
 	enum class playerState
 	{
@@ -41,6 +42,7 @@ public:
 	void HandleInputs(SDL_Event e);
 	void HandleEvents(SDL_Event e);
 	void HandleCollision(GameObject* collision);
+	void SetPosition(int x, int y);
 
 private:
 	void Move();
