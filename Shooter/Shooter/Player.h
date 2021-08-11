@@ -19,7 +19,7 @@ class Player : public GameObject
 
 	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY, armAngle;
 	bool invincible = false;
-	double moveSpeed = 0.75;
+	double moveSpeed = 1.25;
 	double moveProgress = 0.0;
 	const Uint8* keyboardState;
 	SDL_Point armPoint, bulletPoint, lastPos, lastMove;
@@ -35,7 +35,7 @@ class Player : public GameObject
 	uint8_t movementDir;
 
 public:
-	Player();
+	Player(SDL_Rect bounds);
 	~Player();
 	Graphic GetSprites();
 	void Cycle();
@@ -43,6 +43,7 @@ public:
 	void HandleEvents(SDL_Event e);
 	void HandleCollision(GameObject* collision);
 	void SetPosition(int x, int y);
+	SDL_Rect bound;
 
 private:
 	void Move();

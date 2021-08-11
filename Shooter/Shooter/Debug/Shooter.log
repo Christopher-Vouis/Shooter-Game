@@ -1,17 +1,2 @@
-﻿  CollisionDetector.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\CollisionDetector.h(67,21): warning C4018: '<': signed/unsigned mismatch
-  Game.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\CollisionDetector.h(67,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Game.cpp(28,20): warning C4018: '<': signed/unsigned mismatch
-  MainGame.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\CollisionDetector.h(67,21): warning C4018: '<': signed/unsigned mismatch
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(13,65): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(15,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(25,18): warning C4150: deletion of pointer to incomplete type 'SDL_Cursor'; no destructor called
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\packages\sdl2.nuget.2.0.14\build\native\include\SDL_mouse.h(41): message : see declaration of 'SDL_Cursor'
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(49,65): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\MainGame.cpp(93,22): warning C4018: '<': signed/unsigned mismatch
-  Source.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\CollisionDetector.h(67,21): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  Snake.cpp
   Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

@@ -19,6 +19,7 @@ protected:
 	Graphic* currentSprite;
 	SDL_Point position;
 	HitBox* hitBox;
+	SDL_Rect boundary = { 0,0,0,0 };
 
 public:
 	virtual void HandleEvents(SDL_Event e) {};

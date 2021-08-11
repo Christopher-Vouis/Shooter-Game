@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(SDL_Rect bounds)
 {
 	idleSurface = *IMG_Load("img\\cowboy\\cowboy.png");
 	armSurface = *IMG_Load("img\\cowboy\\arm.png");
@@ -27,6 +27,8 @@ Player::Player()
 
 	position = currentSprite->Pos();
 	lastPos = position;
+
+	bound = bounds;
 
 	SDL_Event* event = new SDL_Event();
 	event->type = SDL_USEREVENT;
@@ -184,16 +186,6 @@ void Player::HandleCollision(GameObject* collision)
 	{
 		TakeDamage(1);
 	}
-	if (dynamic_cast<Boundary*>(collision))
-	{
-		moveProgress -= (int)moveProgress;
-		currentSprite->Move(-xMove, -yMove);
-		hitBox->Move(-xMove, -yMove);
-		arm->Move(-xMove, -yMove);
-		armPoint = { armPoint.x - xMove, armPoint.y - yMove };
-		bulletPoint = CalculateBulletPoint();
-		position = currentSprite->Pos();
-	}
 }
 
 void Player::Move()
@@ -203,11 +195,11 @@ void Player::Move()
 	if (moveProgress > 1.0)
 	{
 		lastPos = position;
-		if (movementDir & directions::UP)
+		if ((movementDir & directions::UP) && (position.y - moveProgress > bound.y))
 		{
 			yMove = -moveProgress;
 		}
-		else if (movementDir & directions::DOWN)
+		else if ((movementDir & directions::DOWN) && position.y + currentSprite->Rect().h + moveProgress < bound.y + bound.h)
 		{
 			yMove = moveProgress;
 		}
@@ -216,11 +208,11 @@ void Player::Move()
 			yMove = 0;
 		}
 
-		if (movementDir & directions::LEFT)
+		if ((movementDir & directions::LEFT) && position.x - moveProgress > bound.x)
 		{
 			xMove = -moveProgress;
 		}
-		else if (movementDir & directions::RIGHT)
+		else if ((movementDir & directions::RIGHT) && position.x + currentSprite->Rect().w + moveProgress < bound.x + bound.w)
 		{
 			xMove = moveProgress;
 		}

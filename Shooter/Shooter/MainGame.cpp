@@ -3,7 +3,8 @@
 MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 {
 	snakeTimer = 0;
-	player = new Player();
+	boundary = { 0, 225, 1000, 775 };
+	player = new Player(boundary);
 	objects.push_back(player);
 	crosshairSurface = *IMG_Load("img\\crosshair.png");
 	bgSurface = *IMG_Load("img\\background.png");
@@ -16,7 +17,6 @@ MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 	hud = new HUD();
 	texts = hud->GetTexts();
 	background = Graphic(bgSurface, 0, 0, surface->w, surface->h);
-	objects.push_back(&topBound);
 }
 
 MainGame::~MainGame()
@@ -52,7 +52,7 @@ void MainGame::Update()
 
 	if (snakeTimer >= 3000)
 	{
-		//SpawnObject(new Snake(surface->w, surface->h));
+		SpawnObject(new Snake(boundary));
 		snakeTimer = 0;
 	}
 }

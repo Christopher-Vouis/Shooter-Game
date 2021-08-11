@@ -3,10 +3,11 @@
 class Snake : public Enemy
 {
 public:
-	Snake(int startX, int startY);
+	Snake(SDL_Rect bounds);
 	~Snake();
 	void Cycle();
 private:
 	GameObject::directions ChooseDirection();
+	bool isReturning = false;
 };
 

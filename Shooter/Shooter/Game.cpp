@@ -3,7 +3,7 @@
 
 void Game::UpdateScreen()
 {
-	//RenderGraphic(currentMode->GetBackground());
+	RenderGraphic(currentMode->GetBackground());
 	RenderText();
 	
 	for (GameObject* obj : currentMode->GetObjects())

@@ -19,7 +19,7 @@ class MainGame : public GameMode
 	CollisionDetector collisionDetector = CollisionDetector(renderer);
 	int snakeTimer, lastTime, thisTime;
 	Graphic background;
-	Boundary topBound = Boundary({ 0,0,1000, 332 });
+	SDL_Rect boundary;
 
 public:
 	MainGame(SDL_Renderer* rend, SDL_Surface* surf);
