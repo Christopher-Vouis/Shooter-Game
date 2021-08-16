@@ -20,6 +20,8 @@ protected:
 	SDL_Point position;
 	HitBox* hitBox;
 	SDL_Rect boundary = { 0,0,0,0 };
+	int flickerTimer = 0;
+	bool isDead = false, isFlicker = false;
 
 public:
 	virtual void HandleEvents(SDL_Event e) {};

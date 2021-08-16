@@ -8,7 +8,7 @@ protected:
 	SDL_Rect _rect;
 	SDL_Surface _surface;
 	SDL_Point _origin;
-	int _rotation;
+	int _rotation, _width, _height;
 	SDL_RendererFlip _flipMode;
 
 public:
@@ -89,6 +89,20 @@ public:
 		}
 	}
 
+	void SetFlicker(bool shouldFlicker)
+	{
+		if (shouldFlicker)
+		{
+			_rect.w = 0;
+			_rect.h = 0;
+		}
+		else
+		{
+			_rect.w = _width;
+			_rect.h = _height;
+		}
+	}
+
 	Graphic()
 	{
 
@@ -97,6 +111,8 @@ public:
 	Graphic(SDL_Surface surf, int xCoord, int yCoord, int width, int height, int degrees = 0, SDL_Point origin = { 0, 0 }, SDL_RendererFlip flipMode = SDL_FLIP_NONE)
 	{
 		_rect = SDL_Rect{xCoord, yCoord, width, height};
+		_width = width;
+		_height = height;
 		_surface = surf;
 		_rotation = degrees;
 		_origin = origin;

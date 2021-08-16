@@ -1,2 +1,3 @@
 ﻿  Snake.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Snake.cpp(103,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

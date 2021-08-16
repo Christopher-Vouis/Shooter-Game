@@ -3,7 +3,7 @@
 MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 {
 	snakeTimer = 0;
-	boundary = { 0, 225, 1000, 775 };
+	boundary = { 0, 300, 1000, 700 };
 	player = new Player(boundary);
 	objects.push_back(player);
 	crosshairSurface = *IMG_Load("img\\crosshair.png");
@@ -17,6 +17,11 @@ MainGame::MainGame(SDL_Renderer* rend, SDL_Surface* surf) : GameMode(rend, surf)
 	hud = new HUD();
 	texts = hud->GetTexts();
 	background = Graphic(bgSurface, 0, 0, surface->w, surface->h);
+
+	for (Graphic img : hud->GetGraphics())
+	{
+		images.push_back(img);
+	}
 }
 
 MainGame::~MainGame()

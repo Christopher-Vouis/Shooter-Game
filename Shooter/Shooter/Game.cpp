@@ -5,6 +5,11 @@ void Game::UpdateScreen()
 {
 	RenderGraphic(currentMode->GetBackground());
 	RenderText();
+
+	for (Graphic img : currentMode->GetImages())
+	{
+		RenderGraphic(img);
+	}
 	
 	for (GameObject* obj : currentMode->GetObjects())
 	{

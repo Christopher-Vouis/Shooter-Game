@@ -18,7 +18,7 @@ class Player : public GameObject
 	Graphic* arm;
 
 	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY, armAngle;
-	bool invincible = false;
+	bool invincible = false, isDamaged = false;
 	double moveSpeed = 1.25;
 	double moveProgress = 0.0;
 	const Uint8* keyboardState;

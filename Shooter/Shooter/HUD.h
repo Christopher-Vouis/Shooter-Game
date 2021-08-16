@@ -6,6 +6,7 @@ class HUD : public GameObject
 {
 	GameText scoreLabel;
 	int score;
+	int hp;
 
 public:
 	HUD();

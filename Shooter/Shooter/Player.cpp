@@ -50,6 +50,11 @@ Graphic Player::GetSprites()
 
 void Player::Cycle()
 {
+	if(isDamaged)
+	{
+
+	}
+
 	if (movementDir == directions::NONE)
 	{
 		state = playerState::IDLE;
@@ -182,7 +187,7 @@ void Player::HandleEvents(SDL_Event e)
 
 void Player::HandleCollision(GameObject* collision)
 {
-	if (dynamic_cast<Enemy*>(collision))
+	if (dynamic_cast<Enemy*>(collision) && !invincible)
 	{
 		TakeDamage(1);
 	}
@@ -195,7 +200,7 @@ void Player::Move()
 	if (moveProgress > 1.0)
 	{
 		lastPos = position;
-		if ((movementDir & directions::UP) && (position.y - moveProgress > bound.y))
+		if ((movementDir & directions::UP) && (position.y - moveProgress > bound.y - currentSprite->Rect().h))
 		{
 			yMove = -moveProgress;
 		}
@@ -275,6 +280,8 @@ float Player::GetCursorAngle()
 void Player::TakeDamage(int damage)
 {
 	hitpoints -= damage;
+	isDamaged = true;
+	invincible = true;
 }
 
 void Player::SetFlipH(bool isFlip)
