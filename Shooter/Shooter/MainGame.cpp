@@ -133,6 +133,20 @@ void MainGame::HandleEvents(SDL_Event e)
 			hud->ChangeScore(1);
 			break;
 		}
+		case gameEvents::HEALTH_CHANGE:
+		{
+			int amount = *static_cast<int*>(e.user.data1);
+			if (amount < 0)
+			{
+				hud->HideHearts(-amount);
+			}
+
+			images.clear();
+			for (Graphic img : hud->GetGraphics())
+			{
+				images.push_back(img);
+			}
+		}
 		default:
 			break;
 		}

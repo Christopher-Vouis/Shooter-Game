@@ -166,7 +166,7 @@ void Snake::Die()
 	SDL_PushEvent(event);
 	isDead = true;
 
-	if (direction == directions::UP)
+	if (direction == directions::UP || direction == directions::DOWN)
 	{
 		deathSprite.SetPosition(hitBox->GetBox().x - 30, hitBox->GetBox().y);
 	}
@@ -176,4 +176,13 @@ void Snake::Die()
 	}
 
 	*currentSprite = deathSprite;
+}
+
+void Snake::HandleCollision(GameObject* collision)
+{
+	Enemy::HandleCollision(collision);
+	if (dynamic_cast<Player*>(collision) && !isDead)
+	{
+		Die();
+	}
 }

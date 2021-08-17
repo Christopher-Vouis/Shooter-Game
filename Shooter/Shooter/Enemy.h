@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Bullet.h"
+#include "Player.h"
 #include <chrono>
 
 class Enemy : public GameObject
@@ -9,6 +10,7 @@ protected:
 	Animation* animation;
 	double moveSpeed = 0.75;
 	double moveProgress = 0.0;
+	int damageValue = -1;
 	int xMove, yMove;
 	int hitpoints;
 	int pointValue;

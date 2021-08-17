@@ -7,6 +7,7 @@ public:
 	~Snake();
 	void Die();
 	void Cycle();
+	void HandleCollision(GameObject* collision);
 
 	Graphic deathSprite;
 	SDL_Event* event;

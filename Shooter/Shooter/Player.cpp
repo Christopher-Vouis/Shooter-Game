@@ -24,10 +24,8 @@ Player::Player(SDL_Rect bounds)
 	state = playerState::IDLE;
 	keyboardState = SDL_GetKeyboardState(NULL);
 	hitBox = new HitBox(static_cast<GameObject*>(this), currentSprite->Rect());
-
 	position = currentSprite->Pos();
 	lastPos = position;
-
 	bound = bounds;
 
 	SDL_Event* event = new SDL_Event();
@@ -52,7 +50,34 @@ void Player::Cycle()
 {
 	if(isDamaged)
 	{
+		if (flickerTimer < 70)
+		{
+			float progress = flickerTimer / 8.0;
+			if ((progress - (int)progress) == 0)
+			{
+				if (isFlicker)
+				{
+					currentSprite->SetFlicker(false);
+					arm->SetFlicker(false);
+				}
+				else
+				{
+					currentSprite->SetFlicker(true);
+					arm->SetFlicker(true);
+				}
 
+				isFlicker = !isFlicker;
+			}
+			flickerTimer++;
+		}
+		else
+		{
+			isDamaged = false;
+			invincible = false;
+			flickerTimer = 0;
+			currentSprite->SetFlicker(false);
+			arm->SetFlicker(false);
+		}
 	}
 
 	if (movementDir == directions::NONE)
@@ -190,6 +215,12 @@ void Player::HandleCollision(GameObject* collision)
 	if (dynamic_cast<Enemy*>(collision) && !invincible)
 	{
 		TakeDamage(1);
+		damage = -1;
+		SDL_Event* event = new SDL_Event();
+		event->type = SDL_USEREVENT;
+		event->user.code = gameEvents::HEALTH_CHANGE;
+		event->user.data1 = &damage;
+		SDL_PushEvent(event);
 	}
 }
 
@@ -280,8 +311,20 @@ float Player::GetCursorAngle()
 void Player::TakeDamage(int damage)
 {
 	hitpoints -= damage;
-	isDamaged = true;
-	invincible = true;
+	if (hitpoints > 0)
+	{
+		isDamaged = true;
+		invincible = true;
+	}
+	else
+	{
+		isDead = true;
+		SDL_Event start;
+		start.type = SDL_USEREVENT;
+		start.user.code = gameEvents::MENU;
+		SDL_PushEvent(&start);
+	}
+
 }
 
 void Player::SetFlipH(bool isFlip)

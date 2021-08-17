@@ -66,7 +66,10 @@ void Game::Cycle()
 			case gameEvents::START:
 				delete currentMode;
 				currentMode = new MainGame(renderer, surface);
-				break;			
+				break;	
+			case gameEvents::MENU:
+				delete currentMode;
+				currentMode = new Menu(renderer, surface);
 			default:
 				currentMode->HandleEvents(event);
 				break;

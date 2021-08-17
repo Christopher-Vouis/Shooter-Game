@@ -13,5 +13,7 @@ public:
 	std::vector<GameText> GetTexts();
 	void ChangeScore(int amount);
 	void SetScore(int amount);
+	void HideHearts(int amount);
+	void AddHearts(int amount);
 };
 
