@@ -4,6 +4,7 @@ Player::Player(SDL_Rect bounds)
 {
 	idleSurface = *IMG_Load("img\\cowboy\\cowboy.png");
 	armSurface = *IMG_Load("img\\cowboy\\arm.png");
+	deadSurface = *IMG_Load("img\\cowboy\\cowboyDead.png");
 	std::string walkFrames[2]{ "img\\cowboy\\cowboy_walk1.png","img\\cowboy\\cowboy_walk2.png" };
 	walkAnim = new Animation(walkFrames, 2, 40);
 	sprites.push_back(Graphic());
@@ -79,8 +80,11 @@ void Player::Cycle()
 			arm->SetFlicker(false);
 		}
 	}
-
-	if (movementDir == directions::NONE)
+	if (hitpoints <= 0)
+	{
+		state = playerState::DEAD;
+	}
+	else if (movementDir == directions::NONE)
 	{
 		state = playerState::IDLE;
 		moveProgress = 0;
@@ -101,6 +105,17 @@ void Player::Cycle()
 		Move();
 		break;
 	case playerState::DEAD:
+		if (deadTimer < 90)
+		{
+			++deadTimer;
+		}
+		else
+		{
+			SDL_Event start;
+			start.type = SDL_USEREVENT;
+			start.user.code = gameEvents::MENU;
+			SDL_PushEvent(&start);
+		}
 		break;
 	default:
 		break;
@@ -203,7 +218,10 @@ void Player::HandleEvents(SDL_Event e)
 	case SDL_MOUSEBUTTONDOWN:
 		HandleInputs(e);
 	case SDL_MOUSEMOTION:
-		Aim();
+		if (state != playerState::DEAD)
+		{
+			Aim();
+		}
 		break;
 	default:
 		break;
@@ -319,10 +337,8 @@ void Player::TakeDamage(int damage)
 	else
 	{
 		isDead = true;
-		SDL_Event start;
-		start.type = SDL_USEREVENT;
-		start.user.code = gameEvents::MENU;
-		SDL_PushEvent(&start);
+		currentSprite->SetSurface(deadSurface);
+		arm->SetFlicker(true);
 	}
 
 }

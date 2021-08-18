@@ -1,3 +1,11 @@
-﻿  Snake.cpp
-Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Snake.cpp(103,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  Player.cpp
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(56,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(254,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(258,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(267,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(271,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(292,8): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(293,8): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(309,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Shooter\Player.cpp(325,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Shooter.vcxproj -> Z:\Programming Projects\Shooter\Shooter-Game\Shooter\Debug\Shooter.exe

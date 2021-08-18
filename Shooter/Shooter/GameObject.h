@@ -32,7 +32,6 @@ public:
 	std::vector<Graphic> GetGraphics() { return  sprites; }
 	std::vector<GameText> GetTexts() { return  texts; }
 
-
 	enum directions
 	{
 		NONE = 0,

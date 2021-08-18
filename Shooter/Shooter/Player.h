@@ -13,11 +13,11 @@
 
 class Player : public GameObject
 {
-	SDL_Surface idleSurface, armSurface;
+	SDL_Surface idleSurface, armSurface, deadSurface;
 	Animation* walkAnim;
 	Graphic* arm;
 
-	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY, armAngle, damage;
+	int hitpoints = 3, xMove, yMove, crosshairX, crosshairY, armAngle, damage, deadTimer = 0;
 	bool invincible = false, isDamaged = false;
 	double moveSpeed = 1.25;
 	double moveProgress = 0.0;

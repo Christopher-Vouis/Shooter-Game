@@ -27,22 +27,22 @@ public:
 		bgSurface = new SDL_Surface();
 		*bgSurface = *SDL_CreateRGBSurface(0, surface->w, surface->h, 32, 0, 0, 0, 255);
 		background = Graphic(*bgSurface, 0, 0, surface->w, surface->h);
-	};
+	}
 	virtual void HandleInputs(SDL_Event e) {};
 	virtual void HandleEvents(SDL_Event e) {};
 	virtual void Update() {};
 	virtual std::vector<GameObject*> GetObjects() {
 
 		return objects;
-	};
+	}
 	virtual std::vector<GameText> GetTexts() {
 
 		return texts;
-	};
+	}
 	virtual  std::vector<Graphic> GetImages() {
 
 		return images;
-	};
+	}
 	virtual Graphic GetBackground()
 	{
 		return background;

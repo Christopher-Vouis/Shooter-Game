@@ -77,7 +77,6 @@ void Snake::Cycle()
 				if (currentSprite->Pos().x < boundary.x)
 				{
 					*currentSprite = Graphic(*IMG_Load("img\\snake1.png"), currentSprite->Pos().x, currentSprite->Pos().y, 96, 96);
-					//hitBox = new HitBox(static_cast<GameObject*>(this), { currentSprite->Rect().x, currentSprite->Rect().y + 30, 96, 44 });
 					isReturning = true;
 					direction = directions::RIGHT;
 				}
